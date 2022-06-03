@@ -42,80 +42,31 @@ void WebSerialClass::msgCallback(RecvMsgHandler _recv){
     _RecvFunc = _recv;
 }
 
-// Print
-void WebSerialClass::print(String m){
-    _ws->textAll(m);
+
+int WebSerialClass::read(){
+    return -1;
 }
 
-void WebSerialClass::print(const char *m){
-    _ws->textAll(m);
+int WebSerialClass::available(){
+    return 0;
 }
 
-void WebSerialClass::print(char *m){
-    _ws->textAll(m);
+int WebSerialClass::peek(){
+    return -1;
 }
 
-void WebSerialClass::print(int m){
-    _ws->textAll(String(m));
+size_t WebSerialClass::write(uint8_t val){
+    _ws->textAll(String(val));
+    return 1;
 }
 
-void WebSerialClass::print(uint8_t m){
-    _ws->textAll(String(m));
+size_t WebSerialClass::write(const uint8_t *buf, size_t size){
+   _ws->textAll((uint8_t *)buf, size);
+    return size;
 }
 
-void WebSerialClass::print(uint16_t m){
-    _ws->textAll(String(m));
-}
-
-void WebSerialClass::print(uint32_t m){
-    _ws->textAll(String(m));
-}
-
-void WebSerialClass::print(double m){
-    _ws->textAll(String(m));
-}
-
-void WebSerialClass::print(float m){
-    _ws->textAll(String(m));
-}
-
-
-// Print with New Line
-
-void WebSerialClass::println(String m){
-    _ws->textAll(m+"\n");        
-}
-
-void WebSerialClass::println(const char *m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(char *m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(int m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(uint8_t m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(uint16_t m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(uint32_t m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(float m){
-    _ws->textAll(String(m)+"\n");
-}
-
-void WebSerialClass::println(double m){
-    _ws->textAll(String(m)+"\n");
+void WebSerialClass::flush(){
+    return;
 }
 
 #if defined(WEBSERIAL_DEBUG)
